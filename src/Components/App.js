@@ -13,6 +13,7 @@ const App = () => {
   const location = useLocation();
   const [data, setData] = useState([]);
   const [query, setQuery] = useState('');
+  const [pagination, setPagination] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   const performSearch = (value) => {
@@ -25,9 +26,13 @@ const App = () => {
     axios(
       `http://api.giphy.com/v1/gifs/search?q=${
         query || initialSearch
-      }&limit=24&api_key=dc6zaTOxFJmzC`
+      }&limit=24&offset=24&api_key=dc6zaTOxFJmzC`
     )
-      .then((response) => setData(response.data.data))
+      .then((response) => {
+        setData(response.data.data);
+        setPagination(response.data.pagination);
+        console.log(response.data.pagination);
+      })
       .catch((error) => console.log('Error fetching and parsing data', error))
       .finally(() => setIsLoading(false));
   }, [query]);
@@ -41,12 +46,11 @@ const App = () => {
 
   return (
     <>
-      <div className='main-header'>
+      <header className='main-header'>
         <div className='inner'>
-          <h1 className='main-title'>GifSearch for {query || initialSearch}</h1>
           <SearchForm onSearch={performSearch} />
         </div>
-      </div>
+      </header>
       <div className='main-content'>
         {isLoading ? <p>Loading...</p> : <GifList data={data} />}
       </div>

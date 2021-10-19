@@ -12,14 +12,19 @@ function SearchForm(props) {
   };
 
   return (
-    <form className="search-form" onSubmit={handleSubmit}>
-      <label className="is-hidden" htmlFor="search">Search</label>
-      <input type="search"
+    <form className='search-form' onSubmit={handleSubmit}>
+      <label className='is-hidden' htmlFor='search'>
+        Search
+      </label>
+      <input
+        type='search'
         onChange={onSearchChange}
-        name="search"
-        placeholder="Search..."
+        name='search'
+        placeholder='Find gifs'
       />
-      <button type="submit" id="submit" className="search-button"><i className="material-icons icn-search">search</i></button>
+      <button type='submit' id='submit' className='search-button'>
+        <i className='material-icons icn-search'>search</i>
+      </button>
     </form>
   );
 }
