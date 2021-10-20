@@ -11,22 +11,22 @@ const useFetch = (query, offset) => {
 
   const location = useLocation();
 
-  const initialSearch = 'dog';
-
   useEffect(() => {
     setData([]);
-  }, [query]);
+  }, [location, query]);
 
   const sendQuery = useCallback(async () => {
     setLoading(true);
     setError(false);
     let cancel;
-    console.log('fetching');
+    const locationParam = getParam('search', location.search);
+    const searchTerm = locationParam ? locationParam : 'dog';
+
     axios({
       method: 'GET',
       url: 'http://api.giphy.com/v1/gifs/search',
       params: {
-        q: query || initialSearch,
+        q: searchTerm,
         offset: offset,
         limit: 24,
         api_key: 'dc6zaTOxFJmzC',
@@ -38,7 +38,9 @@ const useFetch = (query, offset) => {
           console.log(
             'has more:',
             res.data.pagination.total_count >
-              res.data.pagination.count + res.data.pagination.offset
+              res.data.pagination.count + res.data.pagination.offset,
+            'total:',
+            res.data.pagination.total_count
           );
           return [...new Set([...prevGifs, ...res.data.data])];
         });
@@ -54,17 +56,10 @@ const useFetch = (query, offset) => {
         setError(true);
       });
     return () => cancel();
-  }, [query, offset]);
+  }, [location, offset]);
 
   useEffect(() => {
-    const locationParam = getParam('search', location.search);
-    if (locationParam !== query) {
-      console.log('useFetch with location params');
-      sendQuery(locationParam);
-    } else {
-      console.log('useFetch with query params');
-      sendQuery(query);
-    }
+    sendQuery();
   }, [location, query, sendQuery, offset]);
 
   return { loading, error, data, hasMore };
