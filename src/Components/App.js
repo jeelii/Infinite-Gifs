@@ -43,11 +43,11 @@ const App = () => {
           <SearchForm onSearch={performSearch} />
         </div>
       </header>
-      <div className='main-content'>
+      <main className='main-content'>
         <GifList data={data} ref={lastGifRef} />
-        <div>{loading && 'Loading...'}</div>
-        <div>{error && 'Error'}</div>
-      </div>
+        {loading && <p>Loading...</p>}
+        {error && <p>Error</p>}
+      </main>
     </>
   );
 };
