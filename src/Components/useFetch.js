@@ -18,7 +18,6 @@ const useFetch = (query, offset) => {
     const locationParam = getParam('search', location.search);
     const searchTerm = locationParam ? locationParam : 'doggo';
     if (offset === 0) setData([]);
-
     axios({
       method: 'GET',
       url: 'http://api.giphy.com/v1/gifs/search',
@@ -26,7 +25,7 @@ const useFetch = (query, offset) => {
         q: searchTerm,
         offset: offset,
         limit: 24,
-        api_key: 'dc6zaTOxFJmzC',
+        api_key: `${process.env.REACT_APP_API_KEY}`,
       },
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
     })
