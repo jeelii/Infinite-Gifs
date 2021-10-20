@@ -11,16 +11,13 @@ const useFetch = (query, offset) => {
 
   const location = useLocation();
 
-  useEffect(() => {
-    setData([]);
-  }, [location, query]);
-
   const sendQuery = useCallback(async () => {
     setLoading(true);
     setError(false);
     let cancel;
     const locationParam = getParam('search', location.search);
     const searchTerm = locationParam ? locationParam : 'dog';
+    if (offset === 0) setData([]);
 
     axios({
       method: 'GET',
@@ -35,14 +32,18 @@ const useFetch = (query, offset) => {
     })
       .then((res) => {
         setData((prevGifs) => {
-          console.log(
-            'has more:',
-            res.data.pagination.total_count >
-              res.data.pagination.count + res.data.pagination.offset,
-            'total:',
-            res.data.pagination.total_count
-          );
-          return [...new Set([...prevGifs, ...res.data.data])];
+          return [
+            ...new Set([
+              ...prevGifs,
+              ...res.data.data.map((gif) => {
+                return {
+                  id: gif.id,
+                  image: gif.images.fixed_height.url,
+                  title: gif.title,
+                };
+              }),
+            ]),
+          ];
         });
         setHasMore(
           res.data.pagination.total_count >
