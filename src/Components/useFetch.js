@@ -20,7 +20,7 @@ const useFetch = (query, offset) => {
     if (offset === 0) setData([]);
     axios({
       method: 'GET',
-      url: 'http://api.giphy.com/v1/gifs/search',
+      url: 'https://api.giphy.com/v1/gifs/search',
       params: {
         q: searchTerm,
         offset: offset,
