@@ -16,7 +16,7 @@ const useFetch = (query, offset) => {
     setError(false);
     let cancel;
     const locationParam = getParam('search', location.search);
-    const searchTerm = locationParam ? locationParam : 'dog';
+    const searchTerm = locationParam ? locationParam : 'doggo';
     if (offset === 0) setData([]);
 
     axios({

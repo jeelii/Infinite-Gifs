@@ -1,13 +1,14 @@
 /* =================================
   Element Styles
 ==================================== */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@300&display=swap');
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font: 1em/1.5 'Roboto', sans-serif;
+  font: 1em/1.5 'Noto Sans Mono', Monospace, sans-serif;
   color: #4c4c4c;
   background: #f6f7f7;
   padding-top: 145px;
@@ -28,6 +29,7 @@ li {
 
 input {
   font-size: 1.12em;
+  font-family: 'Noto Sans Mono', Monospace, sans-serif;
   height: 46px;
   padding-bottom: 1em;
   padding-left: 0;
@@ -63,6 +65,11 @@ button {
   text-transform: uppercase;
   letter-spacing: 1px;
   margin: 0;
+}
+
+.search-form {
+  max-width: 600px;
+  margin: 20px auto 0;
 }
 
 .search-form input:only-of-type {
@@ -188,10 +195,6 @@ button {
   }
   .main-title {
     float: left;
-  }
-  .search-form {
-    max-width: 600px;
-    margin: 20px auto 0;
   }
   .gif-list li {
     width: 33.333333333%;
