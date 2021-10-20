@@ -1,48 +1,40 @@
-import React, { useState, useEffect } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import React, { useState, useRef, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import '../App.css';
-import axios from 'axios';
-import getParam from './utilities/getParam';
 
 import SearchForm from './SearchForm';
 import GifList from './GifList';
+import useFetch from './useFetch';
 
 const App = () => {
-  const initialSearch = 'dog';
   const history = useHistory();
-  const location = useLocation();
-  const [data, setData] = useState([]);
+
   const [query, setQuery] = useState('');
-  const [pagination, setPagination] = useState({});
-  const [isLoading, setIsLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
+
+  const { data, hasMore, loading, error } = useFetch(query, offset);
+
+  const observer = useRef();
+  const lastGifRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setOffset((prevOffset) => prevOffset + 24);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   const performSearch = (value) => {
     setQuery(value);
+    setOffset(0);
     const newPath = `?search=${value}`;
     return history.push(newPath);
   };
-
-  useEffect(() => {
-    axios(
-      `http://api.giphy.com/v1/gifs/search?q=${
-        query || initialSearch
-      }&limit=24&offset=24&api_key=dc6zaTOxFJmzC`
-    )
-      .then((response) => {
-        setData(response.data.data);
-        setPagination(response.data.pagination);
-        console.log(response.data.pagination);
-      })
-      .catch((error) => console.log('Error fetching and parsing data', error))
-      .finally(() => setIsLoading(false));
-  }, [query]);
-
-  useEffect(() => {
-    const locationParam = getParam('search', location.search);
-    if (locationParam !== query) {
-      setQuery(locationParam);
-    }
-  }, [location, query]);
 
   return (
     <>
@@ -52,7 +44,9 @@ const App = () => {
         </div>
       </header>
       <div className='main-content'>
-        {isLoading ? <p>Loading...</p> : <GifList data={data} />}
+        <GifList data={data} ref={lastGifRef} />
+        <div>{loading && 'Loading...'}</div>
+        <div>{error && 'Error'}</div>
       </div>
     </>
   );
