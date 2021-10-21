@@ -25,7 +25,7 @@ const useFetch = (query, offset) => {
       params: {
         q: searchTerm,
         offset: offset,
-        // limit: 50,
+        limit: 50,
         api_key: `${process.env.REACT_APP_API_KEY}`,
       },
       cancelToken: new axios.CancelToken((c) => (cancel = c)),

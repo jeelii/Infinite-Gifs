@@ -6,15 +6,17 @@
 - Reload page/go back or forward without losing your search history
 - Your searches are saved in the browser
 
-## Features
-
-- History state keeps track of location and history
-- Infinite scroll as pagination
-- Custom hook to fetch via Axios
-
 ## Technologies
 
 - React.JS with custom hooks
+
+## Features
+
+- Custom hook for fetching with Axios
+- Infinite scroll as pagination
+- useRef to trigger new fetch
+- History state keeps track of location and history
+- Using local storage to remember searches between sessions
 
 ## Demo
 
