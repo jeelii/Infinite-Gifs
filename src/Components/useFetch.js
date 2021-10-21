@@ -25,7 +25,7 @@ const useFetch = (query, offset) => {
       params: {
         q: searchTerm,
         offset: offset,
-        limit: 24,
+        // limit: 50,
         api_key: `${process.env.REACT_APP_API_KEY}`,
       },
       cancelToken: new axios.CancelToken((c) => (cancel = c)),
@@ -33,16 +33,14 @@ const useFetch = (query, offset) => {
       .then((res) => {
         setData((prevGifs) => {
           return [
-            ...new Set([
-              ...prevGifs,
-              ...res.data.data.map((gif) => {
-                return {
-                  id: gif.id,
-                  image: gif.images.fixed_height.url,
-                  title: gif.title,
-                };
-              }),
-            ]),
+            ...prevGifs,
+            ...res.data.data.map((gif) => {
+              return {
+                id: gif.id,
+                image: gif.images.fixed_height.url,
+                title: gif.title,
+              };
+            }),
           ];
         });
         setHasMore(
