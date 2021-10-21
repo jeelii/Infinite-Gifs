@@ -23,7 +23,7 @@ function SearchForm(props) {
         placeholder='Find gifs'
       />
       <button type='submit' id='submit' className='search-button'>
-        <i className='material-icons icn-search'>search</i>
+        Search
       </button>
     </form>
   );

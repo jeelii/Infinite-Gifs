@@ -6,6 +6,7 @@ import getParam from './utilities/getParam';
 const useFetch = (query, offset) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState([]);
 
@@ -52,7 +53,11 @@ const useFetch = (query, offset) => {
       })
       .catch((e) => {
         if (axios.isCancel(e)) return;
-        console.log(e);
+        const giphyTooManyReqsMsg = 'Request failed with status code 429';
+        if (e.message === giphyTooManyReqsMsg)
+          setErrorMessage(
+            'Too many gif requests in a short time, sorry. Take a break and come back.'
+          );
         setError(true);
       });
     return () => cancel();
@@ -62,7 +67,7 @@ const useFetch = (query, offset) => {
     sendQuery();
   }, [location, query, sendQuery, offset]);
 
-  return { loading, error, data, hasMore };
+  return { loading, error, errorMessage, data, hasMore };
 };
 
 export default useFetch;
