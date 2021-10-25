@@ -7,9 +7,11 @@ const GifList = React.forwardRef(({ data }, ref) => {
   if (data.length) {
     gifs = data.map((gif, idx) => {
       if (data.length === idx + 1) {
-        return <Gif ref={ref} url={gif.image} title={gif.title} key={gif.id} />;
+        return (
+          <Gif ref={ref} url={gif.image} title={gif.title} key={gif.id + idx} />
+        );
       } else {
-        return <Gif url={gif.image} title={gif.title} key={gif.id} />;
+        return <Gif url={gif.image} title={gif.title} key={gif.id + idx} />;
       }
     });
   } else {
