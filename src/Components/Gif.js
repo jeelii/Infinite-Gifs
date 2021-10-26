@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Gif = React.forwardRef((props, ref) => {
+const Gif = React.forwardRef(({ url, title }, ref) => {
   return (
     <li className='gif-wrap'>
-      <img src={props.url} alt={props.title} ref={ref} />
+      <img src={url} alt={title} ref={ref} />
     </li>
   );
 });
