@@ -2,17 +2,20 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import './styles/App.css';
 
-import GifList from './GifList';
 import Header from './Header';
+import GifList from './GifList';
+import NoGifs from './NoGifs';
+
 import useFetch from './useFetch';
 
 const App = () => {
   const history = useHistory();
   const location = useLocation();
 
+  const oldSearches = localStorage.getItem('gifSearches');
+
   const [query, setQuery] = useState('');
   const [offset, setOffset] = useState(0);
-  const oldSearches = localStorage.getItem('gifSearches');
   const [searchHistory, setSearchHistory] = useState(
     oldSearches ? oldSearches.split(',') : []
   );
@@ -64,9 +67,9 @@ const App = () => {
         setOffset={setOffset}
       />
       <main className='main-content'>
-        <GifList data={data} ref={lastGifRef} />
+        <GifList data={data} error={error} ref={lastGifRef} />
         {loading && <p>Loading...</p>}
-        {error && <p className='error'>Error! {errorMessage}</p>}
+        {error && <NoGifs message={<>Error! {errorMessage}</>} />}
       </main>
     </>
   );

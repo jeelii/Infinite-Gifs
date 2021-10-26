@@ -1,8 +1,8 @@
 import React from 'react';
 
-const NoGifs = (props) => (
+const NoGifs = ({ message }) => (
   <li className='no-gifs'>
-    <h3>Sorry, no GIFs match your search.</h3>
+    <h3>{message}</h3>
   </li>
 );
 
