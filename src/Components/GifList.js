@@ -2,7 +2,7 @@ import React from 'react';
 import Gif from './Gif';
 import NoGifs from './NoGifs';
 
-const GifList = React.forwardRef(({ data, error }, ref) => {
+const GifList = React.forwardRef(({ data, error, loading }, ref) => {
   let gifs;
   const noGifsMessage = 'Sorry, no GIFs match your search.';
   if (data.length) {
@@ -15,11 +15,11 @@ const GifList = React.forwardRef(({ data, error }, ref) => {
         return <Gif url={gif.image} title={gif.title} key={gif.id + idx} />;
       }
     });
-  } else {
+  } else if (!loading && !error) {
     gifs = <NoGifs message={noGifsMessage} />;
   }
 
-  return <ul className='gif-list'>{!error && gifs}</ul>;
+  return <ul className='gif-list'>{gifs}</ul>;
 });
 
 export default GifList;

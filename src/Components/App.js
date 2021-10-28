@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import './styles/App.css';
 
 import Header from './Header';
@@ -10,7 +10,6 @@ import useFetch from './useFetch';
 
 const App = () => {
   const history = useHistory();
-  const location = useLocation();
 
   const oldSearches = localStorage.getItem('gifSearches');
 
@@ -45,17 +44,14 @@ const App = () => {
   }, [searchHistory]);
 
   const performSearch = (value) => {
-    const trimmedValue = value.trim();
-    if (!trimmedValue) return;
-    setQuery(trimmedValue);
+    const trimmedSearch = value.trim();
+    if (!trimmedSearch) return;
+    setQuery(trimmedSearch);
     setOffset(0);
     setSearchHistory((prevHistory) => {
-      return [...new Set([trimmedValue, ...prevHistory.slice(0, 5)])];
+      return [...new Set([trimmedSearch, ...prevHistory.slice(0, 5)])];
     });
-    const newPath = `?search=${trimmedValue}`;
-    if (location.search !== newPath) {
-      history.push(newPath);
-    }
+    history.push(trimmedSearch);
     return;
   };
 
@@ -67,9 +63,9 @@ const App = () => {
         setOffset={setOffset}
       />
       <main className='main-content'>
-        <GifList data={data} error={error} ref={lastGifRef} />
-        {loading && <p>Loading...</p>}
-        {error && <NoGifs message={<>Error! {errorMessage}</>} />}
+        <GifList data={data} error={error} loading={loading} ref={lastGifRef} />
+        {loading && !error && <NoGifs message='Loading...' />}
+        {error && <NoGifs message={`Error! ${errorMessage}`} />}
       </main>
     </>
   );

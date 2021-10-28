@@ -1,7 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import getParam from './utilities/getParam';
 
 const useFetch = (query, offset) => {
   const [loading, setLoading] = useState(true);
@@ -10,14 +9,13 @@ const useFetch = (query, offset) => {
   const [data, setData] = useState([]);
   const [hasMore, setHasMore] = useState([]);
 
-  const location = useLocation();
+  const { search } = useParams();
 
   const sendQuery = useCallback(async () => {
     setLoading(true);
     setError(false);
     let cancel;
-    const locationParam = getParam('search', location.search);
-    const searchTerm = locationParam ? locationParam : 'doggo';
+    const searchTerm = search ? search : 'doggo';
     if (offset === 0) setData([]);
     axios({
       method: 'GET',
@@ -59,11 +57,11 @@ const useFetch = (query, offset) => {
         setError(true);
       });
     return () => cancel();
-  }, [location, offset]);
+  }, [search, offset]);
 
   useEffect(() => {
     sendQuery();
-  }, [location, query, sendQuery, offset]);
+  }, [search, query, sendQuery, offset]);
 
   return { loading, error, errorMessage, data, hasMore };
 };

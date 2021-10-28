@@ -11,7 +11,7 @@ const SearchHistory = ({ setOffset, searchHistory }) => {
             {searchHistory.map((word, idx) => {
               return (
                 <li key={idx} className='history__item'>
-                  <Link to={`?search=${word}`} onClick={() => setOffset(0)}>
+                  <Link to={word} onClick={() => setOffset(0)}>
                     {word}
                   </Link>
                 </li>
