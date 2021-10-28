@@ -4,7 +4,6 @@ import './styles/App.css';
 
 import Header from './Header';
 import GifList from './GifList';
-import NoGifs from './NoGifs';
 
 import useFetch from './useFetch';
 
@@ -62,11 +61,13 @@ const App = () => {
         searchHistory={searchHistory}
         setOffset={setOffset}
       />
-      <main className='main-content'>
-        <GifList data={data} error={error} loading={loading} ref={lastGifRef} />
-        {loading && !error && <NoGifs message='Loading...' />}
-        {error && <NoGifs message={`Error! ${errorMessage}`} />}
-      </main>
+      <GifList
+        data={data}
+        loading={loading}
+        error={error}
+        errorMessage={errorMessage}
+        ref={lastGifRef}
+      />
     </>
   );
 };

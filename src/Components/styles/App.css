@@ -72,10 +72,11 @@ button {
   display: block;
 }
 
-.no-gifs {
+.gif-list__message {
   color: #7bcbc4;
   text-align: center;
   font-size: 1.25em;
+  clear: both;
 }
 
 .gif-list a {
