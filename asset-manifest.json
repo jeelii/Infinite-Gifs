@@ -1,22 +1,22 @@
 {
   "files": {
     "main.css": "/Infinite-Gifs/static/css/main.d2c87a58.chunk.css",
-    "main.js": "/Infinite-Gifs/static/js/main.e1faa19c.chunk.js",
-    "main.js.map": "/Infinite-Gifs/static/js/main.e1faa19c.chunk.js.map",
+    "main.js": "/Infinite-Gifs/static/js/main.32e90334.chunk.js",
+    "main.js.map": "/Infinite-Gifs/static/js/main.32e90334.chunk.js.map",
     "runtime-main.js": "/Infinite-Gifs/static/js/runtime-main.c0eb24a8.js",
     "runtime-main.js.map": "/Infinite-Gifs/static/js/runtime-main.c0eb24a8.js.map",
-    "static/js/2.046f1faa.chunk.js": "/Infinite-Gifs/static/js/2.046f1faa.chunk.js",
-    "static/js/2.046f1faa.chunk.js.map": "/Infinite-Gifs/static/js/2.046f1faa.chunk.js.map",
+    "static/js/2.131f72d3.chunk.js": "/Infinite-Gifs/static/js/2.131f72d3.chunk.js",
+    "static/js/2.131f72d3.chunk.js.map": "/Infinite-Gifs/static/js/2.131f72d3.chunk.js.map",
     "index.html": "/Infinite-Gifs/index.html",
-    "precache-manifest.53e8f66a24ec0cfdb24825aae1c32b4c.js": "/Infinite-Gifs/precache-manifest.53e8f66a24ec0cfdb24825aae1c32b4c.js",
+    "precache-manifest.4abf980b01b74cb73b31e816571eddb0.js": "/Infinite-Gifs/precache-manifest.4abf980b01b74cb73b31e816571eddb0.js",
     "service-worker.js": "/Infinite-Gifs/service-worker.js",
     "static/css/main.d2c87a58.chunk.css.map": "/Infinite-Gifs/static/css/main.d2c87a58.chunk.css.map",
-    "static/js/2.046f1faa.chunk.js.LICENSE.txt": "/Infinite-Gifs/static/js/2.046f1faa.chunk.js.LICENSE.txt"
+    "static/js/2.131f72d3.chunk.js.LICENSE.txt": "/Infinite-Gifs/static/js/2.131f72d3.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.c0eb24a8.js",
-    "static/js/2.046f1faa.chunk.js",
+    "static/js/2.131f72d3.chunk.js",
     "static/css/main.d2c87a58.chunk.css",
-    "static/js/main.e1faa19c.chunk.js"
+    "static/js/main.32e90334.chunk.js"
   ]
 }

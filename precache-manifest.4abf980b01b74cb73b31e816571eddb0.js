@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "dfe30ecf40dab895a67d64c4eddef214",
+    "revision": "6380ab74f81c9701c7966d73a9f2a3c6",
     "url": "/Infinite-Gifs/index.html"
   },
   {
-    "revision": "99dee770ad51a2e89c7f",
+    "revision": "a983a342b70ac48a0422",
     "url": "/Infinite-Gifs/static/css/main.d2c87a58.chunk.css"
   },
   {
-    "revision": "a6556064651e55c7d53c",
-    "url": "/Infinite-Gifs/static/js/2.046f1faa.chunk.js"
+    "revision": "a6fb6ad01ed182522361",
+    "url": "/Infinite-Gifs/static/js/2.131f72d3.chunk.js"
   },
   {
     "revision": "9b318b6fb13190fe82c0677e9264b3c7",
-    "url": "/Infinite-Gifs/static/js/2.046f1faa.chunk.js.LICENSE.txt"
+    "url": "/Infinite-Gifs/static/js/2.131f72d3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "99dee770ad51a2e89c7f",
-    "url": "/Infinite-Gifs/static/js/main.e1faa19c.chunk.js"
+    "revision": "a983a342b70ac48a0422",
+    "url": "/Infinite-Gifs/static/js/main.32e90334.chunk.js"
   },
   {
     "revision": "a0b2d21c054916e7d672",
