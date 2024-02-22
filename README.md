@@ -20,7 +20,7 @@
 
 ## Demo
 
-🚀 [Launch website](https://jennyliind.github.io/Infinite-Gifs/)
+🚀 [Launch website](https://jeelii.github.io/Infinite-Gifs/)
 If it stops loading gifs, it can be because the Giphy API (beta version) is limited to a certain number of requests in a limited time (I print this error on the page if that is the case). You can come back and try again in a little while.
 
 ## Sources
